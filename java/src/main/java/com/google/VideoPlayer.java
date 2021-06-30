@@ -1,8 +1,12 @@
 package com.google;
 
+import java.util.Objects;
+
 public class VideoPlayer {
 
   private final VideoLibrary videoLibrary;
+  private boolean alreadyPlaying = false;
+  private String videoPlaying = "";
 
   public VideoPlayer() {
     this.videoLibrary = new VideoLibrary();
@@ -17,11 +21,29 @@ public class VideoPlayer {
   }
 
   public void playVideo(String videoId) {
-    System.out.println("playVideo needs implementation");
+    Video toBePlayed = videoLibrary.getVideo(videoId);
+    if (Objects.isNull(toBePlayed)) {
+      System.out.println("Cannot play video: Video does not exist");
+    } 
+      else {
+        if (alreadyPlaying) {
+          System.out.println("Stopping video: "+videoPlaying);
+        } else {
+          alreadyPlaying = true;
+        }
+        System.out.println("Playing video: "+toBePlayed.getTitle());
+        videoPlaying = toBePlayed.getTitle();
+      }
   }
 
   public void stopVideo() {
-    System.out.println("stopVideo needs implementation");
+    if (alreadyPlaying) {
+      System.out.println("Stopping video: "+videoPlaying);
+      alreadyPlaying = false;
+      videoPlaying = "";
+    } else {
+      System.out.println("Cannot stop video: No video is currently playing");
+    }    
   }
 
   public void playRandomVideo() {
