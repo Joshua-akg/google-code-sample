@@ -21,8 +21,10 @@ public class VideoPlayer {
 
   public void showAllVideos() {
     List<Video> allVideos = videoLibrary.getVideos();
+    allVideos.sort(new VideoSorter());
 
     System.out.println("Here's a list of all available videos:");
+
     for (Video video : allVideos) {
       System.out.printf("%s (%s) [%s]%n", video.getTitle(), video.getVideoId(), String.join(" ", video.getTags()));      
     }
