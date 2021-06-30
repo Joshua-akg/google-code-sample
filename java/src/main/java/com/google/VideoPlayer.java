@@ -1,5 +1,7 @@
 package com.google;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class VideoPlayer {
@@ -18,7 +20,12 @@ public class VideoPlayer {
   }
 
   public void showAllVideos() {
-    System.out.println("showAllVideos needs implementation");
+    List<Video> allVideos = videoLibrary.getVideos();
+
+    System.out.println("Here's a list of all available videos:");
+    for (Video video : allVideos) {
+      System.out.printf("%s (%s) [%s]%n", video.getTitle(), video.getVideoId(), String.join(" ", video.getTags()));      
+    }
   }
 
   public void playVideo(String videoId) {
@@ -49,7 +56,11 @@ public class VideoPlayer {
   }
 
   public void playRandomVideo() {
-    System.out.println("playRandomVideo needs implementation");
+    if (alreadyPlaying) {
+      System.out.println("Stopping video: "+videoPlaying.getTitle());
+    }
+    List<Video> allVideos = videoLibrary.getVideos();
+    System.out.println("Playing video: "+allVideos.get((int)Math.random()*allVideos.size()).getTitle());
   }
 
   public void pauseVideo() {
