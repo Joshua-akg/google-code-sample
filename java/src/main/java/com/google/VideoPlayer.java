@@ -6,6 +6,7 @@ public class VideoPlayer {
 
   private final VideoLibrary videoLibrary;
   private boolean alreadyPlaying = false;
+  private boolean paused = false;
   private String videoPlaying = "";
 
   public VideoPlayer() {
@@ -30,6 +31,7 @@ public class VideoPlayer {
           System.out.println("Stopping video: "+videoPlaying);
         } else {
           alreadyPlaying = true;
+          paused = false;
         }
         System.out.println("Playing video: "+toBePlayed.getTitle());
         videoPlaying = toBePlayed.getTitle();
@@ -51,11 +53,28 @@ public class VideoPlayer {
   }
 
   public void pauseVideo() {
-    System.out.println("pauseVideo needs implementation");
+    if (!alreadyPlaying) {
+      System.out.println("Cannot pause video: No video is currently playing");      
+    } else
+        if (paused) {
+          System.out.println("Video already paused: "+videoPlaying);
+        } else {
+          System.out.println("Pausing video: "+videoPlaying);
+          paused = true;
+        }
   }
 
   public void continueVideo() {
-    System.out.println("continueVideo needs implementation");
+    if (!alreadyPlaying) {
+      System.out.println("Cannot continue video: No video is currently playing");
+    } else {
+      if (!paused) {
+        System.out.println("Cannot continue video: Video is not paused");
+      } else {
+        System.out.println("Continuing video: "+videoPlaying);
+        paused = false;
+      }
+    }
   }
 
   public void showPlaying() {
