@@ -12,11 +12,11 @@ public class VideoPlayer {
   private PlaylistLibrary playlistLibrary;
   private boolean alreadyPlaying = false;
   private boolean paused = false;
-  private Video videoPlaying = null;
-  // private HashMap<String, VideoPlaylist> playlists; 
+  private Video videoPlaying = null; 
 
   public VideoPlayer() {
     this.videoLibrary = new VideoLibrary();
+    this.playlistLibrary = new PlaylistLibrary();
   }
 
   public void numberOfVideos() {
@@ -106,37 +106,20 @@ public class VideoPlayer {
     }
   }
 
-  // public void createPlaylist(String playlistName) {
-  //   // if (Objects.isNull(playlistLibrary.getPlaylist(playlistName))) {
-  //   try {
-  //     if (!playlistLibrary.contains(playlistName)) {
-  //       //if (playlistLibrary.getPlaylist(playlistName) == null) {
-  //         playlistLibrary.addPlaylist(playlistName);
-  //         System.out.printf("Successfully created new playlist: %s%n",playlistName);
-  //       } else {
-  //         System.out.println("Cannot create playlist: A playlist with the same name already exists");
-  //     }      
-  //   } catch (Exception e) {
-  //     e.printStackTrace();
-  //     // System.out.println("Tis still broken :(");
-  //   }
-  // }
-
   public void createPlaylist(String playlistName) {
+    // if (Objects.isNull(playlistLibrary.getPlaylist(playlistName))) {
     try {
-      // if (playlistLibrary.getPlaylist(playlistName) != null) {
-        if (!Objects.isNull(playlistLibrary.getPlaylist(playlistName))) {
-        System.out.println("Cannot create playlist: A playlist with the same name already exists");
-      }
-      else {
-        playlistLibrary.addPlaylist(playlistName);
-        System.out.println("Successfully created new playlist: " + playlistName);
+      if (!playlistLibrary.contains(playlistName)) {
+        //if (playlistLibrary.getPlaylist(playlistName) == null) {
+          playlistLibrary.addPlaylist(playlistName);
+          System.out.printf("Successfully created new playlist: %s%n",playlistName);
+        } else {
+          System.out.println("Cannot create playlist: A playlist with the same name already exists");
       }      
     } catch (Exception e) {
       e.printStackTrace();
-      System.out.println("Tis still broken :(");      
+      System.out.println("Tis still broken :(");
     }
-    
   }
 
   public void addVideoToPlaylist(String playlistName, String videoId) {
