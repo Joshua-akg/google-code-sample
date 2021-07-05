@@ -52,4 +52,11 @@ class VideoLibrary {
   Video getVideo(String videoId) {
     return this.videos.get(videoId);
   }
+
+  boolean contains(String videoId) {
+    if (this.videos.containsKey(videoId))
+        return true;
+    else 
+        return false;
+}
 }
