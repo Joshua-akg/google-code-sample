@@ -207,41 +207,41 @@ public class VideoPlayer {
   }
 
   public void searchVideos(String searchTerm) {
-    // List<Video> allVideos = videoLibrary.getVideos();
-    // List<Video> containsList = new ArrayList<>();
-    // HashMap<Integer,Video> containsMap = new HashMap<>();
+    List<Video> allVideos = videoLibrary.getVideos();
+    List<Video> containsList = new ArrayList<>();
+    HashMap<Integer,Video> containsMap = new HashMap<>();
 
-    // for (Video video : allVideos) {
-    //   if (video.getTitle().toLowerCase().contains(searchTerm.toLowerCase())) {
-    //     containsList.add(video);
-    //   }      
-    // }
+    for (Video video : allVideos) {
+      if (video.getTitle().toLowerCase().contains(searchTerm.toLowerCase())) {
+        containsList.add(video);
+      }      
+    }
 
-    // if (containsList.isEmpty()) {
-    //   System.out.println("No search results for "+searchTerm);
-    //   return;
-    // }
-    // containsList.sort(new VideoSorter());
+    if (containsList.isEmpty()) {
+      System.out.println("No search results for "+searchTerm);
+      return;
+    }
+    containsList.sort(new VideoSorter());
 
-    // System.out.printf("Here are the results for %s:%n",searchTerm);
+    System.out.printf("Here are the results for %s:%n",searchTerm);
 
-    // for (int i = 0; i < containsList.size(); i++) {
-    //   Video current = containsList.get(i);
-    //   System.out.printf("%d) %s (%s) [%s] %n",current.getTitle(),
-    //                                           current.getVideoId(),
-    //                                           String.join(" ", current.getTags()));
-    //   containsMap.put(i, containsList.get(i));      
-    // }
-    // System.out.printf("Would you like to play any of the above? If yes, specify the number of the video.%nIf your answer is not a valid number, we will assume it's a no.");
+    for (int i = 0; i < containsList.size(); i++) {
+      Video current = containsList.get(i);
+      System.out.printf("%d) %s (%s) [%s] %n",current.getTitle(),
+                                              current.getVideoId(),
+                                              String.join(" ", current.getTags()));
+      containsMap.put(i, containsList.get(i));      
+    }
+    System.out.printf("Would you like to play any of the above? If yes, specify the number of the video.%nIf your answer is not a valid number, we will assume it's a no.");
 
-    // Scanner input = new Scanner(System.in);
-    // String choice = input.nextLine();
-    // System.out.println("The choice is"+choice);
-    // input.close();
+    Scanner input = new Scanner(System.in);
+    int choice = input.nextInt();
+    System.out.println("The choice is"+choice);
+    input.close();
 
-    // if (!Objects.isNull(containsMap.get(choice))) {
-    //   this.playVideo(containsMap.get(choice).getVideoId());      
-    // }
+    if (!Objects.isNull(containsMap.get(choice))) {
+      this.playVideo(containsMap.get(choice).getVideoId());      
+    }
       System.out.println("searchVideos needs implementation");
 
   }
