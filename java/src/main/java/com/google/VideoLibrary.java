@@ -15,9 +15,11 @@ import java.util.stream.Collectors;
 class VideoLibrary {
 
   private final HashMap<String, Video> videos;
+  private HashMap<String, Video> flagged;
 
   VideoLibrary() {
     this.videos = new HashMap<>();
+    this.flagged = new HashMap<>();
     try {
       File file = new File(this.getClass().getResource("/videos.txt").getFile());
 
@@ -52,6 +54,10 @@ class VideoLibrary {
    */
   Video getVideo(String videoId) {
     return this.videos.get(videoId);
+  }
+
+  void flag(String videoId) {
+    flagged.put(videoId, videos.get(videoId));    
   }
 
   boolean contains(String videoId) {

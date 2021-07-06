@@ -12,11 +12,13 @@ public class VideoPlayer {
   private PlaylistLibrary playlistLibrary;
   private boolean alreadyPlaying = false;
   private boolean paused = false;
-  private Video videoPlaying = null; 
+  private Video videoPlaying = null;
+  private HashMap<String, String> flagReasons;
 
   public VideoPlayer() {
     this.videoLibrary = new VideoLibrary();
     this.playlistLibrary = new PlaylistLibrary();
+    this.flagReasons = new HashMap<>();
   }
 
   public void numberOfVideos() {
@@ -235,9 +237,7 @@ public class VideoPlayer {
     System.out.printf("Would you like to play any of the above? If yes, specify the number of the video.%nIf your answer is not a valid number, we will assume it's a no.%n");
 
     Scanner input = new Scanner(System.in);
-    // int choice = input.nextInt();
     String choice = input.nextLine();
-    // System.out.println("The choice is"+choice);
     input.close();
 
     try {
@@ -277,9 +277,7 @@ public class VideoPlayer {
     System.out.printf("Would you like to play any of the above? If yes, specify the number of the video.%nIf your answer is not a valid number, we will assume it's a no.%n");
 
     Scanner input = new Scanner(System.in);
-    // int choice = input.nextInt();
     String choice = input.nextLine();
-    // System.out.println("The choice is"+choice);
     input.close();
 
     try {
@@ -291,7 +289,10 @@ public class VideoPlayer {
   }
 
   public void flagVideo(String videoId) {
-    System.out.println("flagVideo needs implementation");
+    // System.out.println("flagVideo needs implementation");
+    if (!videoLibrary.contains(videoId)) {
+      System.out.printf("Cannot flag video: Video does not exist");
+    }
   }
 
   public void flagVideo(String videoId, String reason) {
