@@ -50,8 +50,13 @@ public class PlaylistLibrary {
         }
     }
 
-    List<VideoPlaylist> allPlaylists() {
-        return (List<VideoPlaylist>)playlists.values();
+    ArrayList<VideoPlaylist> allPlaylists() {
+        ArrayList<VideoPlaylist> list = new ArrayList<>();
+        for (VideoPlaylist videoPlaylist : playlists.values()) {
+            list.add(videoPlaylist);           
+        }
+        
+        return list;
     }
     
 }

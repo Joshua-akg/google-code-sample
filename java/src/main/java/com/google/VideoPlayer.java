@@ -107,10 +107,8 @@ public class VideoPlayer {
   }
 
   public void createPlaylist(String playlistName) {
-    // if (Objects.isNull(playlistLibrary.getPlaylist(playlistName))) {
     try {
       if (!playlistLibrary.contains(playlistName)) {
-        //if (playlistLibrary.getPlaylist(playlistName) == null) {
           playlistLibrary.addPlaylist(playlistName);
           System.out.printf("Successfully created new playlist: %s%n",playlistName);
         } else {
@@ -118,13 +116,12 @@ public class VideoPlayer {
       }      
     } catch (Exception e) {
       e.printStackTrace();
-      System.out.println("Tis still broken :(");
     }
   }
 
   public void addVideoToPlaylist(String playlistName, String videoId) {
     if (!playlistLibrary.contains(playlistName)) { //playlist does not exist
-      System.out.printf("Cannot add video to %s: Playlist does not exist%n",playlistName);
+      System.out.printf("Cannot add video to %s: Playlist does not exist",playlistName);
       if (!videoLibrary.contains(videoId)) { //and video does not exist
         System.out.printf("Cannot add video to %s: Video does not exist%n",playlistName);
       }
@@ -134,6 +131,7 @@ public class VideoPlayer {
       } else { //Video exists
         if (playlistLibrary.getPlaylist(playlistName).addVideoToPlaylist(videoLibrary.getVideo(videoId))) {
           System.out.printf("Added video to %s: %s%n",playlistName,videoLibrary.getVideo(videoId).getTitle());
+          //System.out.println("");
         } else {
           System.out.printf("Cannot add video to %s: Video already added%n",playlistName);
         }
@@ -145,7 +143,7 @@ public class VideoPlayer {
     if (playlistLibrary.getPlaylistNumber() == 0) {
       System.out.println("No playlists exist yet");
     } else {
-      List<VideoPlaylist> allPlaylists = playlistLibrary.allPlaylists();
+      ArrayList<VideoPlaylist> allPlaylists = playlistLibrary.allPlaylists();
       allPlaylists.sort(new PlaylistSorter());
 
       System.out.println("Showing all playlists:");
@@ -174,7 +172,7 @@ public class VideoPlayer {
 
   public void removeFromPlaylist(String playlistName, String videoId) {
     if (!playlistLibrary.contains(playlistName)) { //playlist does not exist
-      System.out.printf("Cannot remove video from %s: Playlist does not exist%n",playlistName);
+      System.out.printf("Cannot remove video from %s: Playlist does not exist",playlistName);
       if (!videoLibrary.contains(videoId)) { //and video does not exist
         System.out.printf("Cannot remove video from %s: Video does not exist%n",playlistName);
       }
