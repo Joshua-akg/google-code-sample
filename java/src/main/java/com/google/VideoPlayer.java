@@ -227,23 +227,25 @@ public class VideoPlayer {
 
     for (int i = 0; i < containsList.size(); i++) {
       Video current = containsList.get(i);
-      System.out.printf("%d) %s (%s) [%s] %n",current.getTitle(),
+      System.out.printf("%s (%s) [%s] %n",current.getTitle(),
                                               current.getVideoId(),
                                               String.join(" ", current.getTags()));
       containsMap.put(i, containsList.get(i));      
     }
-    System.out.printf("Would you like to play any of the above? If yes, specify the number of the video.%nIf your answer is not a valid number, we will assume it's a no.");
+    System.out.println("Would you like to play any of the above? If yes, specify the number of the video.%nIf your answer is not a valid number, we will assume it's a no.");
 
     Scanner input = new Scanner(System.in);
-    int choice = input.nextInt();
-    System.out.println("The choice is"+choice);
+    // int choice = input.nextInt();
+    String choice = input.nextLine();
+    // System.out.println("The choice is"+choice);
     input.close();
 
-    if (!Objects.isNull(containsMap.get(choice))) {
-      this.playVideo(containsMap.get(choice).getVideoId());      
+    try {
+      if (!Objects.isNull(containsMap.get(Integer.valueOf(choice)))) {
+        this.playVideo(containsMap.get(Integer.valueOf(choice)).getVideoId());      
+      }            
+    } catch (Exception e) {
     }
-      System.out.println("searchVideos needs implementation");
-
   }
 
   public void searchVideosWithTag(String videoTag) {
